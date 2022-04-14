@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+</head>
+<body>
+
+</body>
+<script type="text/javascript">
+
+    const root = document.querySelector('body');
+
+
+    function createElement(tag, config, parent = null) {
+    const { text, color } = config || {};
+
+    const element = document.createElement(tag);
+
+    if(color) {
+        element.style.color = color;
+    }
+
+    if(text) {
+        element.innerHTML = text;
+    }
+    if(!parent) {
+        root.appendChild(element);
+    } else {
+        parent.appendChild(element);
+    }
+    return element;
+    }
+
+    const myDiv = createElement('div');
+    const data = [ 'Hello', 'world', 'toto', 'tata'];
+
+    function createCards ()  {
+    data.forEach(el => {
+        createElement('p', { text: el, color: 'red' }, myDiv);
+    })
+    }
+
+createCards();
+
+
+</script>
+</html>
