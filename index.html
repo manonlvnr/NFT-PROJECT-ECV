@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title></title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
 </head>
+
 <body>
 
 </body>
@@ -14,36 +16,87 @@
 
 
     function createElement(tag, config, parent = null) {
-    const { text, color } = config || {};
+        
+        // const { text, color } = config || {};
+        const { src, href } = config || {};
 
-    const element = document.createElement(tag);
+        const element = document.createElement(tag);
 
-    if(color) {
-        element.style.color = color;
-    }
+        // if (color) {
+        //     element.style.color = color;
+        // }
 
-    if(text) {
-        element.innerHTML = text;
-    }
-    if(!parent) {
-        root.appendChild(element);
-    } else {
-        parent.appendChild(element);
-    }
-    return element;
+        // if (text) {
+        //     element.innerHTML = text;
+        // }
+
+        if (src) {
+            element.src = src;
+            element.style.width = '150px';
+            element.style.height = '150px';
+            element.href = href;
+        }
+
+        if (!parent) {
+            root.appendChild(element);
+        } else {
+            parent.appendChild(element);
+        }
+        return element;
     }
 
     const myDiv = createElement('div');
-    const data = [ 'Hello', 'world', 'toto', 'tata'];
+    const data = ['Hello', 'world', 'toto', 'tata'];
 
-    function createCards ()  {
-    data.forEach(el => {
-        createElement('p', { text: el, color: 'red' }, myDiv);
-    })
+    // Créateur
+    // Nombre de ventes
+    // Détails des produits NFT
+    // Liste des produits NFT
+
+    function createCards(assets) {
+        assets.forEach(el => {
+
+            
+            // Créer un élément img avec l'url de l'image et le mettre dans la variable myDiv
+
+            createElement('img', {
+                src: el.image_url,
+                href: '#'
+            }, myDiv);
+
+            console.log(el.image_url)
+        })
+
     }
 
-createCards();
+
+
+    async function callApi() {
+        // Call api  https://awesome-nft-app.herokuapp.com/ and get image with fetch, try
+        // Create cards with data
+        try {
+
+            const response = await fetch('https://awesome-nft-app.herokuapp.com/');
+            const data = await response.json();
+            const assets = data.assets;
+
+            createCards(assets);
+
+            console.log(assets)
+
+        } catch (error) {
+
+            console.log(error);
+
+        }
+
+
+
+    }
+
+    callApi();
 
 
 </script>
+
 </html>
