@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+
+</body>
+<script type="text/javascript">
+
+    const root = document.querySelector('body');
+
+
+    function createElement(tag, config, parent = null) {
+        const { 
+            product_sales, 
+            product_image, 
+            product_name,
+            creator,
+            creator_picture,
+            product_id,
+            token_id,
+            collection,
+            created_at        
+        } = config || {};
+
+        const element = document.createElement(tag);
+        // Style du grid
+        element.className = 'flex font-sans';
+        element.href = "https://www.ethereum.org/";
+        
+
+
+        element.classList.add("grid", "grid-cols-1");
+        element.style.display = 'grid';
+        element.style.border = '2px solid #eaeaea';
+        element.style.borderRadius = '10px';
+        element.style.backgroundColor = ' #f9fafc';
+
+
+        // Image du produit
+        if (product_image) {
+            const imgDiv = document.createElement('div');
+           
+           imgDiv.style.display = 'flex';
+           imgDiv.style.justifyContent = 'center';
+           imgDiv.style.alignItems = 'center';
+
+        //    ajout bordure noire
+              imgDiv.style.border = '2px solid #000';
+
+           const imgElement = document.createElement('img');
+
+           imgElement.className= 'w-full aspect-w-1 aspect-h-1  rounded-lg overflow-hidden xl:aspect-w-7 xl:aspect-h-8';
+           imgElement.src = product_image;
+           imgElement.style.justifyContent = 'center';
+
+
+           imgDiv.appendChild(imgElement);
+
+           if (product_image !== '') {
+               element.appendChild(imgDiv);
+
+           }
+        }
+       
+        // Nombre de ventes
+        if (product_sales) {
+            const sales = document.createElement('p');
+            sales.innerHTML = "Sales : " + product_sales;
+               //    ajout bordure noire
+                sales.style.border = '2px solid #000';
+            element.appendChild(sales);
+        }
+
+        // Nom du produit
+        if(product_name) {
+            const name = document.createElement('p');
+            name.innerHTML = "Product name : " + product_name;
+            //    ajout bordure noire
+            name.style.border = '2px solid #000';
+            element.appendChild(name);
+        }
+
+        // Photo de profil
+        if(creator_picture) {
+            const creatorPictureElement = document.createElement('img');
+            creatorPictureElement.className= 'w-10 aspect-w-1 aspect-h-1  rounded-lg overflow-hidden xl:aspect-w-7 xl:aspect-h-8';
+            creatorPictureElement.src = creator_picture;
+            creatorPictureElement.style.justifyContent = 'center';
+            element.appendChild(creatorPictureElement);
+        }
+
+        // Créateur
+        if(creator) {
+            const creatorElement = document.createElement('p');
+            creatorElement.innerHTML = "Creator : " + creator;
+            //    ajout bordure noire
+            creatorElement.style.border = '2px solid #000';
+            element.appendChild(creatorElement);
+        }
+
+        // Collection
+        if(collection) {
+            const collectionElement = document.createElement('p');
+            collectionElement.innerHTML = "Collection : " + collection;
+            //    ajout bordure noire
+            collectionElement.style.border = '2px solid #000';
+
+            element.appendChild(collectionElement);
+        }
+
+        // Creation 
+        if(created_at) {
+            const createdAtElement = document.createElement('p');
+            createdAtElement.innerHTML = 'Created at : '+ created_at;
+            //    ajout bordure noire
+            createdAtElement.style.border = '2px solid #000';
+            element.appendChild(createdAtElement);
+        }
+
+         // Button
+        if (product_image){
+        const button = document.createElement('button');
+        button.className = ' mt-4 text-sm inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500';
+        button.innerHTML = 'Voir le NFT';
+        button.style.maxWidth = '300px';
+        button.style.margin = 'auto';
+        button.style.marginTop = '10px';
+        button.style.marginBottom = '20px';
+
+        button.onclick = function () {
+            
+        }
+
+        element.appendChild(button);
+        }
+
+        if (!parent) {
+            root.appendChild(element);
+        } else {
+            parent.appendChild(element);
+        }
+        return element;
+    }
+
+    const myDiv = createElement('div');
+    myDiv.style.display = 'grid';
+
+    myDiv.style.gridTemplateColumns = '1fr 1fr 1fr';
+    myDiv.style.gridGap = '50px';
+    myDiv.className ="max-w-2xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8";
+    myDiv.style.border = 'none';
+    myDiv.style.backgroundColor = 'white';
+
+
+
+    const data = ['Hello', 'world', 'toto', 'tata'];
+
+    function createCards(assets) {
+    
+        assets.forEach(el => {
+            if (el) {
+                // Total de ventes
+                // Image
+                // Nom du produit            
+                // Créateur
+                // id
+                // token_id
+                // Nom de la collection
+                // date de création
+
+                createElement('div', {
+                    product_sales : el.sales,
+                    product_image : el.image_url,
+                    product_name : el.name,
+                    creator : el.creator.username,
+                    creator_picture : el.creator.profile_url,
+                    product_id : el.id,
+                    token_id : el.token_id,
+                    collection : el.collection.name,
+                    created_at : el.contract.created_at
+
+                }, myDiv);
+            }
+        })
+        
+
+    }
+
+     const username = window.location.search.split('=')[1];
+       
+     console.log(username);
+
+    function getCollection() {
+
+        console.log(`https://awesome-nft-app.herokuapp.com/creators/${username}` );
+
+        fetch(`https://awesome-nft-app.herokuapp.com/creators/${username}` )
+            .then(response => response.json())
+            .then(data => {
+                const assets = data.assets;
+                console.log(assets)
+                createCards(assets);
+            })
+            .catch(error => console.error(error))
+    }
+
+    getCollection();
+
+
+</script>
+
+</html>
