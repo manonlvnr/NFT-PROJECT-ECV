@@ -46,29 +46,29 @@
         // Image du produit
         if (product_image) {
             const imgDiv = document.createElement('div');
-           
-           imgDiv.style.display = 'flex';
-           imgDiv.style.justifyContent = 'center';
-           imgDiv.style.alignItems = 'center';
+            
+            imgDiv.style.display = 'flex';
+            imgDiv.style.justifyContent = 'center';
+            imgDiv.style.alignItems = 'center';
 
         //    ajout bordure noire
-              imgDiv.style.border = '2px solid #000';
+                imgDiv.style.border = '2px solid #000';
 
-           const imgElement = document.createElement('img');
+            const imgElement = document.createElement('img');
 
-           imgElement.className= 'w-full aspect-w-1 aspect-h-1  rounded-lg overflow-hidden xl:aspect-w-7 xl:aspect-h-8';
-           imgElement.src = product_image;
-           imgElement.style.justifyContent = 'center';
+            imgElement.className= 'w-full aspect-w-1 aspect-h-1  rounded-lg overflow-hidden xl:aspect-w-7 xl:aspect-h-8';
+            imgElement.src = product_image;
+            imgElement.style.justifyContent = 'center';
 
 
-           imgDiv.appendChild(imgElement);
+            imgDiv.appendChild(imgElement);
 
-           if (product_image !== '') {
-               element.appendChild(imgDiv);
+            if (product_image !== '') {
+                element.appendChild(imgDiv);
 
-           }
+            }
         }
-       
+        
         // Nombre de ventes
         if (product_sales) {
             const sales = document.createElement('p');
