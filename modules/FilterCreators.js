@@ -2,12 +2,13 @@
 // Etape 2 : Créer une div qui comprend un select // une option tous les créateurs // et les creators (foreach)
 // Etape 3 : Créer un event listener onchange : si le change est sur id === "filter_creators", on display none les images : si value !== '' alors renvoyer la fonction filterResults(value); sinon createIndex();
 // Etape 4 : Dans filterResults(value) on fait un call à l'api en passant le param à l'url d'appel : on renvoie le resultats à la fonction createCards
+SubMenuSelector = document.getElementById('subMenu');
 
 function createFilterAuthors(creators) {
 
     const filtre = document.createElement('div'); 
-    filtre.className = 'col-span-6 sm:col-span-3';
-    nftContainer.appendChild(filtre);
+    filtre.className = 'flex-1';
+    SubMenuSelector.appendChild(filtre);
     const select = document.createElement('select');
     select.id = 'filter';
     select.className = 'mt-1 block py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm';
