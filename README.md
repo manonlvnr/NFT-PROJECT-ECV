@@ -1,4 +1,14 @@
 # NFT-PROJECT-ECV
+update - 18/04
+
+LazyLoading.js -> module pour le lazy loading 
+
+Router.js -> module pour le routing des pages (exemple OK avec page1.html / page2.html avec navbar test)
+
+Elements à modif / supp : Nabar.js / page1.html / page2.html
+
+_______________________________________________________________
+_______________________________________________________________
 
 CreatorList -> module qui crée les cartes créateurs et les ajoute à l'index
 

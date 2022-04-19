@@ -64,6 +64,7 @@ function fetchSearchResults(query) {
                 console.log(data);
                 const assets = data.assets;
                 createCards(assets);
+                lazyload();
             })
     }
     catch (error) {

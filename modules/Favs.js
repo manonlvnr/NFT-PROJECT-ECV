@@ -18,6 +18,7 @@ function runFavs(elem) {
 function displayFavs() {
     nftContainer.style.display = "none";
     creatorsDiv.style.display = "none";
+    document.createElement('button');
     
     if (localStorage.length === 0) {
         // const divContainer = document.createElement('h1');

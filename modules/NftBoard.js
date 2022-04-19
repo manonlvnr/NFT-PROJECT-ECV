@@ -1,7 +1,7 @@
 const root = document.querySelector("body");
 
 function createElement(tag, config, parent = null) {
-  const { nameNFT, src, ownerNFT, creatorNFT, descriptionNFT, idNFT } = config || {};
+  const { nameNFT, src, ownerNFT, creatorNFT, descriptionNFT, idNFT, dataSrc } = config || {};
 
   const element = document.createElement(tag);
   // if (color) {
@@ -38,6 +38,7 @@ function createElement(tag, config, parent = null) {
     
     if (src) {
       imageElement.src = src;
+      imageElement.dataset.src = dataSrc;
     }
 
     if (nameNFT) {
@@ -135,12 +136,14 @@ nftContainer.appendChild(cardContainer);
 // Liste des produits NFT
 
 function createCards(assets) {
+
   assets.forEach((el) => {
     createElement(
       "div",
       {
         nameNFT: el.name,
-        src: el.image_url,
+        src: './load.jpg',
+        dataSrc : el.image_url,
         ownerNFT: el.owner.name,
         creatorNFT: el.creator.username,
         descriptionNFT: el.description,
@@ -150,8 +153,6 @@ function createCards(assets) {
     );
   });
 }
-
-
 async function createIndex() {
   try {
     const response = await fetch(`https://awesome-nft-app.herokuapp.com/`);
