@@ -32,6 +32,7 @@
         if (event.target.id === "filter_search") {
                 let value = event.target.value;
                 filterChanged(value);
+                
         }
     });
 
@@ -63,6 +64,7 @@
                     console.log(data);
                     const assets = data.assets;
                     createCards(assets);
+                    lazyload();
                 })
         }
         catch (error) {

@@ -2,21 +2,18 @@ const root = document.querySelector('body');
 
 function createElement(tag, config, parent = null) {
 
-    const { src, href, className } = config || {};
+    const { src, dataSrc, href, className } = config || {};
 
     const element = document.createElement(tag);
 
     element.className = "gridItem";
 
-
     if (src) {
         element.src = src;
-        // element.dataSrc = src;
 
-        element.alt = '...';
+        element.dataset.src = dataSrc;
 
         element.style.backgroundColor = ' #f9fafc';
-
         element.style.width = '350px';
         element.style.height = '350px';
         element.href = href;
@@ -57,7 +54,7 @@ function createCards(assets) {
 
         if (el.image_url) {
             createElement('img', {
-                src: el.image_url,
+                src: './load.jpg',
                 dataSrc : el.image_url,
                 href: '#',
                 className: 'nftImage'
@@ -67,6 +64,7 @@ function createCards(assets) {
 
     })
 }
+
 
 
 

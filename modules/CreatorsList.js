@@ -1,9 +1,9 @@
 // 1 : Appel de la fonction getCreators depuis l'index : await fetch('https://awesome-nft-app.herokuapp.com/creators'); et passage de la réponse en json dans la fontion createCreatorCards(creators);
-// 2 : Envoie des données dans la fonction createCreatorCards(creators); avec en paramètre img, username, address du créateur
+// 2 : Envoie des données dans la fonction createCreatorCards(creators); avec en paramètre src, username, address du créateur
 // 3 : Création de la carte créateur avec les données du créateur et ajout dans la div creatorsDiv
 
     function createElementCreator(tag, config, parent = null) {
-        const { username, img, address } = config || {};
+        const { username, dataSrc, src, address } = config || {};
 
         const element = document.createElement(tag);
 
@@ -20,22 +20,26 @@
 
 
         // Image
-        if (img) {
+        if (src) {
             const imgDiv = document.createElement('div');
-           
+
             imgDiv.style.display = 'flex';
             imgDiv.style.justifyContent = 'center';
             imgDiv.style.alignItems = 'center';
 
             const imgElement = document.createElement('img');
             imgElement.className= 'w-full aspect-w-1 aspect-h-1  rounded-lg overflow-hidden xl:aspect-w-7 xl:aspect-h-8';
-            imgElement.src = img;
+            imgElement.src = src;
+            imgElement.style.width = '100%';
+            imgElement.style.height = '100%';
+            imgElement.style.borderRadius = '10px';
+            imgElement.dataset.src = dataSrc;
             imgElement.style.justifyContent = 'center';
 
 
             imgDiv.appendChild(imgElement);
 
-            if (img !== '') {
+            if (src !== '') {
                 element.appendChild(imgDiv);
 
             }
@@ -83,9 +87,11 @@
         button.className = ' mt-4 text-sm inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500';
         button.innerHTML = 'Voir la collection';
         button.style.maxWidth = '300px';
+
         button.style.margin = 'auto';
         button.style.marginTop = '10px';
         button.style.marginBottom = '20px';
+
 
         button.onclick = function () {
             window.location.href = `creator-collection.html?username=${username}`;
@@ -111,24 +117,14 @@
     creatorsDiv.style.border = 'none';
     creatorsDiv.style.backgroundColor = 'white';
 
-    // const data = ['Hello', 'world', 'toto', 'tata'];
-    // const dataCreators = new Promise((resolve, reject) => {
-    //     // ...
-    //     const isRunning = true;
-
-    //     if(isRunning){
-    //         resolve()
-    //     }else{
-    //         reject()
-    //     }
-    // })
 
 
     function createCreatorCards(data) {
         data.forEach(el => {
             if (el.username) {
                 createElementCreator('div', {
-                    img: el.profile_url,
+                    src: './load.jpg',
+                    dataSrc : el.profile_url,
                     username: el.username,
                     address: el.address
                 }, creatorsDiv);
