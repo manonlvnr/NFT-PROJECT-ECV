@@ -25,7 +25,7 @@ function createElement(tag, config, parent = null) {
     //let idCard = idNFT
     //nftCard.setAttribute('id', idNFT);
     cardElement.className = "flex font-sans p-8 m-8 card nftImage";
-    cardElement.setAttribute('onclick',"runFavs(this)");
+    // cardElement.setAttribute('onclick',"runFavs(this)");
     imageContainer.className = "flex-none w-56 relative shadow-md";
     imageElement.className = "absolute inset-0 w-full h-full object-cover rounded-lg ";
     infoContainer.className = "flex-auto p-6 shadow-md";
@@ -34,7 +34,8 @@ function createElement(tag, config, parent = null) {
     creator.className = "flex-auto font-medium text-slate-900";
     owner.className = "text-sm font-medium text-slate-400";
     buyBtn.className = "h-10 px-6 font-semibold rounded-full bg-violet-600 text-white";
-    likeBtn.className = "flex-none flex items-center justify-center w-9 h-9 rounded-full text-violet-600 bg-violet-50";
+    likeBtn.className = "flex-none flex items-center justify-center w-9 h-9 rounded-full text-violet-600 bg-violet-50 likeBtn";
+    likeBtn.setAttribute('onclick',"runFavs(this)");
     
     if (src) {
       imageElement.src = src;
@@ -73,11 +74,11 @@ function createElement(tag, config, parent = null) {
     
     const cards = document.querySelectorAll(".card ");
       
-    cards.forEach(card => {
-      card.addEventListener("mouseenter", cardMouseEnter);
-      card.addEventListener("mousemove", cardMouseMove);
-      card.addEventListener("mouseleave", cardMouseLeave);
-    });
+    // cards.forEach(card => {
+    //   card.addEventListener("mouseenter", cardMouseEnter);
+    //   card.addEventListener("mousemove", cardMouseMove);
+    //   card.addEventListener("mouseleave", cardMouseLeave);
+    // });
     
     function cardMouseEnter(event) {
       setTransition(event);
