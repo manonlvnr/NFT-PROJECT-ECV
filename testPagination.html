@@ -1,0 +1,176 @@
+<!Doctype html>
+<html lang="en">
+
+<head>
+    <title>JSON pagination</title>
+    <style>
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        *,
+        *:after,
+        *:before {
+            margin: inherit;
+            padding: inherit;
+            box-sizing: inherit;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+        }
+
+        #container {
+            width: 600px;
+            padding: 30px;
+
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        table thead tr,
+        table tfoot tr {
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        table tbody tr {
+            background: rgba(0, 0, 0, 0.08);
+        }
+
+        table tbody tr:hover {
+            background: rgba(0, 0, 0, 0.05);
+        }
+
+        table tr>th {
+            text-align: left;
+        }
+
+        table tr>th,
+        tr>td {
+            border: 1px solid rgba(0, 0, 0, 0.2);
+            padding: 10px 15px;
+            cursor: pointer;
+
+        }
+
+        #pagination {
+            display: block;
+            padding: 10px;
+            text-align: center;
+        }
+
+        #pagination>a {
+            display: inline-block;
+            text-decoration: none;
+            padding: 10px;
+            border: 1px solid rgba(0, 0, 0, 0.2);
+            border-right: 0;
+            background: rgba(0, 0, 0, 0.08);
+            color: #000;
+            font-weight: 600;
+        }
+
+        #pagination>a:last-child {
+            border-right: 1px solid rgba(0, 0, 0, 0.2);
+        }
+
+        #pagination>a:hover {
+            background: rgba(0, 0, 0, 0.03);
+            color: #FB3C00;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Gender</th>
+                    <th>District</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th>Name</th>
+                    <th>Gender</th>
+                    <th>District</th>
+                </tr>
+            </tfoot>
+        </table>
+        <div id="pagination"></div>
+    </div>
+    <script>
+
+        const displayPageNav = (perPage, assets) => {
+
+            let pagination = ``;
+            const totalItems = assets.length;
+            perPage = perPage ? perPage : 1;
+            const pages = Math.ceil(totalItems / perPage);
+
+            for (let i = 1; i <= pages; i++) {
+                pagination += `<a href="#" onClick="displayItems(${i},${perPage},${assets})" >${i}</a>`;
+            }
+
+            document.getElementById('pagination').innerHTML = pagination;
+
+        }
+
+        const displayItems = (page = 1, perPage = 2, assets) => {
+
+            let index, offSet
+
+            if (page == 1 || page <= 0) {
+                index = 0
+                offSet = perPage
+            } else if (page > assets.length) {
+                index = page - 1
+                offSet = assets.length
+            } else {
+                index = page * perPage - perPage
+                offSet = index + perPage
+            }
+
+            const slicedItems = assets.slice(index, offSet)
+
+            const html = slicedItems.map(item =>
+                `<tr>
+                    <td>${item.username}</td>
+                    <td>${item.profile_url}</td>
+                    <td>${item.address}</td>
+                    </tr>`)
+
+            document.querySelector('#container tbody').innerHTML = html.join('')
+
+        }
+
+
+
+        async function getCreators() {
+            const response = await fetch('https://awesome-nft-app.herokuapp.com/creators');
+            const data = await response.json();
+            const assets = data.creators
+
+            let perPage = 10
+            displayPageNav(perPage, assets)
+            displayItems(1, perPage, assets)
+        }
+
+        getCreators();
+
+
+    </script>
+</body>
+
+</html>

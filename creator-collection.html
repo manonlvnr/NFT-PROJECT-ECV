@@ -180,9 +180,7 @@
         div.innerHTML = assets.length + ' résultat(s)';
         div.classList.add('text-xl', 'p-2.5');
         var bodyChildren = document.querySelector('body').children;
-
-        var body = document.body;
-        body.insertBefore(div, bodyChildren.item(4));
+        document.body.insertBefore(div, bodyChildren.item(4));
 
         assets.forEach(el => {
             if (el) {
@@ -242,7 +240,6 @@
             .then(response => response.json())
             .then(data => {
                 const assets = data.assets;
-                console.log(assets)
                 createCards(assets);
             })
             .catch(error => console.error(error))
