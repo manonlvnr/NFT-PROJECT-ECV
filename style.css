@@ -1,16 +1,23 @@
 .card{
-    transform-style: preserve-3d ;
 	transition: all 0.75s ease;
     transform: perspective(1000px) ;
     opacity: 0;
 }
 
-.card > div {
+.card:nth-child(1), .card:nth-child(3), .card:nth-child(5), .card:nth-child(7){
+    opacity: 1 !important;
+}
+
+.singlecard{
+    transform-style: preserve-3d ;
+}
+.singlecard > div {
     transform: translateZ(150px) ;
 }
 
-.card > div > h5, .card > div > p{
+.singlecard > h1 {
     transform: translateZ(250px) ;
+    margin-top: -30vh;
 }
 
 .card.active {

@@ -8,7 +8,7 @@
         const element = document.createElement(tag);
 
         // Style du grid
-        element.className = 'flex font-sans';
+        element.className = 'flex font-sans ';
         element.href = "https://www.ethereum.org/";
         element.classList.add("grid", "grid-cols-1", "gap-y-10", "sm:grid-cols-2", "gap-x-6", "lg:grid-cols-3", "xl:grid-cols-4", "xl:gap-x-8");
         element.style.display = 'grid';
@@ -28,7 +28,7 @@
             imgDiv.style.alignItems = 'center';
 
             const imgElement = document.createElement('img');
-            imgElement.className= 'w-full aspect-w-1 aspect-h-1  rounded-lg overflow-hidden xl:aspect-w-7 xl:aspect-h-8';
+            imgElement.className= 'w-full aspect-w-1 aspect-h-1 rounded-lg overflow-hidden xl:aspect-w-7 xl:aspect-h-8';
             imgElement.src = img;
             imgElement.style.justifyContent = 'center';
 
@@ -49,7 +49,7 @@
             usernameElement.style.display = 'flex';
             usernameElement.style.justifyContent = 'center';
             usernameElement.style.alignItems = 'center';
-            element.className = 'mt-1 text-lg font-medium text-gray-900  ';
+            element.className = 'mt-1 text-lg font-medium text-gray-900  card';
             usernameElement.style.marginTop = '20px';
             usernameElement.style.color = '#5046e5';
 
@@ -104,10 +104,8 @@
     }
 
     const creatorsDiv = createElementCreator('div');
-    creatorsDiv.style.display = 'grid';
-    creatorsDiv.style.gridTemplateColumns = '1fr 1fr 1fr';
     creatorsDiv.style.gridGap = '50px';
-    creatorsDiv.className ="max-w-2xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8";
+    creatorsDiv.className ="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 max-w-2xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8";
     creatorsDiv.style.border = 'none';
     creatorsDiv.style.backgroundColor = 'white';
 

@@ -45,7 +45,8 @@ document.body.addEventListener("change", function (event) {
 
         let nftImages = document.getElementsByClassName("nftImage");
             for (let i = 0; i < nftImages.length; i++) {
-                nftImages[i].style.display = "none";
+                nftImages[i].classList.remove("card");
+                nftImages[i].style.display = "none";    
             }
 
         if (event.target.value !== "") {
