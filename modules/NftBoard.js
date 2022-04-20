@@ -22,6 +22,10 @@ function createElement(tag, config, parent = null) {
     let owner = document.createElement("p");
     let buyBtn = document.createElement("button");
     let likeBtn = document.createElement("button");
+    let heartBtn = document.createElement("img");
+    likeBtn.appendChild(heartBtn);
+
+
     //let idCard = idNFT
     //nftCard.setAttribute('id', idNFT);
     cardElement.className = "flex font-sans p-8 m-8 card nftImage";
@@ -34,8 +38,11 @@ function createElement(tag, config, parent = null) {
     creator.className = "flex-auto font-medium text-slate-900";
     owner.className = "text-sm font-medium text-slate-400";
     buyBtn.className = "h-10 px-6 font-semibold rounded-full bg-violet-600 text-white";
-    likeBtn.className = "flex-none flex items-center justify-center w-9 h-9 rounded-full text-violet-600 bg-violet-50 likeBtn";
-    likeBtn.setAttribute('onclick',"runFavs(this)");
+    likeBtn.className = "flex-none flex items-center justify-center w-10 h-10 rounded-full likeBtn";
+    likeBtn.setAttribute('onclick',"runFavs(this)");    
+    likeBtn.style.backgroundColor = "grey";
+    heartBtn.className = "w-7 h-7"
+    heartBtn.src = "https://emojitool.com/img/facebook/4.0/white-heart-1566.png";
     
     if (src) {
       imageElement.src = src;

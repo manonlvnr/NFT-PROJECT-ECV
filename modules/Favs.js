@@ -7,6 +7,7 @@ function runFavs(elem) {
     if(elem.classList.contains('favs')) {
         // console.log('Class present');
         elem.classList.remove('favs');
+        elem.style.backgroundColor = "grey";
 
         for( let i = 0; i < localStorage.length; i++){
             // console.log(localStorage.key(i));
@@ -17,6 +18,7 @@ function runFavs(elem) {
     } else {
         // console.log('Class not present');
         elem.classList.add('favs');
+        elem.style.backgroundColor = "pink";
         localStorage.setItem(grandParent.id, img.src);
     }
     // console.log(localStorage);
