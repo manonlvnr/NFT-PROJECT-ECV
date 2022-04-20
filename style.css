@@ -1,0 +1,19 @@
+.card{
+    transform-style: preserve-3d ;
+	transition: all 0.75s ease;
+    transform: perspective(1000px) ;
+    opacity: 0;
+}
+
+.card > div {
+    transform: translateZ(150px) ;
+}
+
+.card > div > h5, .card > div > p{
+    transform: translateZ(250px) ;
+}
+
+.card.active {
+	opacity: 1;
+	top: 0;
+}

@@ -2,12 +2,13 @@
 // 2 : mySearchBar(searchValue) : display none les nftImages + appel de la fonction fetchSearchResults(searchValue) et appel de la fonction fetchSearchResults(searchValue)
 // 3 : fetchSearchResults(searchValue) : appel de la fonction fetchSearchResults(searchValue) avec en paramètre searchValue
 
+    SubMenuSelector = document.getElementById('subMenu');
 
     function createFilterSales (){
 
     const filtre = document.createElement('div');
-    filtre.className = 'col-span-6 sm:col-span-3';
-    nftContainer.appendChild(filtre);
+    filtre.className = 'flex-1';
+    SubMenuSelector.appendChild(filtre);
 
     const select = document.createElement('select');
     select.id = 'filter_search'; 
