@@ -114,20 +114,20 @@
 
         const displayPageNav = (perPage, assets) => {
 
-            let pagination = ``;
-            const totalItems = assets.length;
-            perPage = perPage ? perPage : 1;
-            const pages = Math.ceil(totalItems / perPage);
+            let pagination = ``
+            const totalItems = assets.length
+            perPage = perPage ? perPage : 1
+            const pages = Math.ceil(totalItems / perPage)
 
             for (let i = 1; i <= pages; i++) {
-                pagination += `<a href="#" onClick="displayItems(${i},${perPage},${assets})" >${i}</a>`;
+                pagination += `<a href="#" onClick="displayItems(${i},${perPage},${assets})" >${i}</a>`
             }
 
-            document.getElementById('pagination').innerHTML = pagination;
+            document.getElementById('pagination').innerHTML = pagination
 
         }
 
-        const displayItems = (page = 1, perPage = 2, assets) => {
+        const displayItems = (page = 1, perPage, assets) => {
 
             let index, offSet
 
@@ -146,16 +146,14 @@
 
             const html = slicedItems.map(item =>
                 `<tr>
-                    <td>${item.username}</td>
-                    <td>${item.profile_url}</td>
-                    <td>${item.address}</td>
-                    </tr>`)
+      <td>${item.username}</td>
+      <td>${item.profile_url}</td>
+      <td>${item.address}</td>
+    </tr>`)
 
             document.querySelector('#container tbody').innerHTML = html.join('')
 
         }
-
-
 
         async function getCreators() {
             const response = await fetch('https://awesome-nft-app.herokuapp.com/creators');
