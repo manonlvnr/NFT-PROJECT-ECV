@@ -3,7 +3,7 @@
 // 3 : Création de la carte créateur avec les données du créateur et ajout dans la div creatorsDiv
 
     function createElementCreator(tag, config, parent = null) {
-        const { username, dataSrc, src, address } = config || {};
+        const { username, dataSrc, src, address, href } = config || {};
 
         const element = document.createElement(tag);
 
@@ -92,10 +92,14 @@
         button.style.marginTop = '10px';
         button.style.marginBottom = '20px';
 
-
-        button.onclick = function () {
-            window.location.href = `creator-collection.html?username=${username}`;
+        if (href) {
+            button.setAttribute('href', href);
         }
+
+
+        // button.onclick = function () {
+        //     window.location.href = `creator-collection.html?username=${username}`;
+        // }
 
         element.appendChild(button);
         }
@@ -126,7 +130,9 @@
                     src: './load.jpg',
                     dataSrc : el.profile_url,
                     username: el.username,
-                    address: el.address
+                    address: el.address,
+                    // A ajouter
+                    href: `/creator-collection.html?username=${el.username}`,
                 }, creatorsDiv);
             }
         })

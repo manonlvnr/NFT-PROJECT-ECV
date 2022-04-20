@@ -1,7 +1,7 @@
 const root = document.querySelector("body");
 
 function createElement(tag, config, parent = null) {
-  const { nameNFT, src, ownerNFT, creatorNFT, descriptionNFT, idNFT } = config || {};
+  const { nameNFT, src, ownerNFT, creatorNFT, descriptionNFT, idNFT, dataSrc, href } = config || {};
 
   const element = document.createElement(tag);
   // if (color) {
@@ -21,6 +21,7 @@ function createElement(tag, config, parent = null) {
     let creator = document.createElement("p");
     let owner = document.createElement("p");
     let buyBtn = document.createElement("button");
+
     let likeBtn = document.createElement("button");
     //let idCard = idNFT
     //nftCard.setAttribute('id', idNFT);
@@ -38,6 +39,7 @@ function createElement(tag, config, parent = null) {
     
     if (src) {
       imageElement.src = src;
+      imageElement.dataset.src = dataSrc
     }
 
     if (nameNFT) {
@@ -55,6 +57,11 @@ function createElement(tag, config, parent = null) {
     if (idNFT){
       cardElement.setAttribute('id', idNFT);
     }
+
+    if (href) {
+      buyBtn.setAttribute('href', href);
+    }
+   
     buyBtn.innerText = "Buy it";
 
     cardContainer.appendChild(cardElement);
@@ -140,11 +147,13 @@ function createCards(assets) {
       "div",
       {
         nameNFT: el.name,
-        src: el.image_url,
+        src: './load.jpg',
+        dataSrc : el.image_url,
         ownerNFT: el.owner.name,
         creatorNFT: el.creator.username,
         descriptionNFT: el.description,
         idNFT: el.id,
+        href: `/details.html?id=${el.id}`,
       },
       cardContainer
     );

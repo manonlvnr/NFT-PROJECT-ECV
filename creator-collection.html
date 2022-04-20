@@ -17,23 +17,24 @@
 
 
     function createElement(tag, config, parent = null) {
-        const { 
-            product_sales, 
-            product_image, 
+        const {
+            product_sales,
+            product_image,
             product_name,
             creator,
             creator_picture,
             product_id,
             token_id,
             collection,
-            created_at        
+            created_at,
+            
         } = config || {};
 
         const element = document.createElement(tag);
         // Style du grid
         element.className = 'flex font-sans';
         element.href = "https://www.ethereum.org/";
-        
+
 
 
         element.classList.add("grid", "grid-cols-1");
@@ -46,17 +47,17 @@
         // Image du produit
         if (product_image) {
             const imgDiv = document.createElement('div');
-            
+
             imgDiv.style.display = 'flex';
             imgDiv.style.justifyContent = 'center';
             imgDiv.style.alignItems = 'center';
 
-        //    ajout bordure noire
-                imgDiv.style.border = '2px solid #000';
+            //    ajout bordure noire
+            imgDiv.style.border = '2px solid #000';
 
             const imgElement = document.createElement('img');
 
-            imgElement.className= 'w-full aspect-w-1 aspect-h-1  rounded-lg overflow-hidden xl:aspect-w-7 xl:aspect-h-8';
+            imgElement.className = 'w-full aspect-w-1 aspect-h-1  rounded-lg overflow-hidden xl:aspect-w-7 xl:aspect-h-8';
             imgElement.src = product_image;
             imgElement.style.justifyContent = 'center';
 
@@ -68,18 +69,18 @@
 
             }
         }
-        
+
         // Nombre de ventes
         if (product_sales) {
             const sales = document.createElement('p');
             sales.innerHTML = "Sales : " + product_sales;
-               //    ajout bordure noire
-                sales.style.border = '2px solid #000';
+            //    ajout bordure noire
+            sales.style.border = '2px solid #000';
             element.appendChild(sales);
         }
 
         // Nom du produit
-        if(product_name) {
+        if (product_name) {
             const name = document.createElement('p');
             name.innerHTML = "Product name : " + product_name;
             //    ajout bordure noire
@@ -88,16 +89,16 @@
         }
 
         // Photo de profil
-        if(creator_picture) {
+        if (creator_picture) {
             const creatorPictureElement = document.createElement('img');
-            creatorPictureElement.className= 'w-10 aspect-w-1 aspect-h-1  rounded-lg overflow-hidden xl:aspect-w-7 xl:aspect-h-8';
+            creatorPictureElement.className = 'w-10 aspect-w-1 aspect-h-1  rounded-lg overflow-hidden xl:aspect-w-7 xl:aspect-h-8';
             creatorPictureElement.src = creator_picture;
             creatorPictureElement.style.justifyContent = 'center';
             element.appendChild(creatorPictureElement);
         }
 
         // Créateur
-        if(creator) {
+        if (creator) {
             const creatorElement = document.createElement('p');
             creatorElement.innerHTML = "Creator : " + creator;
             //    ajout bordure noire
@@ -106,7 +107,7 @@
         }
 
         // Collection
-        if(collection) {
+        if (collection) {
             const collectionElement = document.createElement('p');
             collectionElement.innerHTML = "Collection : " + collection;
             //    ajout bordure noire
@@ -116,29 +117,30 @@
         }
 
         // Creation 
-        if(created_at) {
+        if (created_at) {
             const createdAtElement = document.createElement('p');
-            createdAtElement.innerHTML = 'Created at : '+ created_at;
+            createdAtElement.innerHTML = 'Created at : ' + created_at;
             //    ajout bordure noire
             createdAtElement.style.border = '2px solid #000';
             element.appendChild(createdAtElement);
         }
 
-         // Button
-        if (product_image){
-        const button = document.createElement('button');
-        button.className = ' mt-4 text-sm inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500';
-        button.innerHTML = 'Voir le NFT';
-        button.style.maxWidth = '300px';
-        button.style.margin = 'auto';
-        button.style.marginTop = '10px';
-        button.style.marginBottom = '20px';
+        // Button
+        if (product_image) {
+            const button = document.createElement('button');
+            button.className = ' mt-4 text-sm inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500';
+            button.innerHTML = 'Voir le NFT';
+            button.style.maxWidth = '300px';
+            button.style.margin = 'auto';
+            button.style.marginTop = '10px';
+            button.style.marginBottom = '20px';
 
-        button.onclick = function () {
-            
-        }
 
-        element.appendChild(button);
+            button.onclick = function () {
+
+            }
+
+            element.appendChild(button);
         }
 
         if (!parent) {
@@ -154,7 +156,7 @@
 
     myDiv.style.gridTemplateColumns = '1fr 1fr 1fr';
     myDiv.style.gridGap = '50px';
-    myDiv.className ="max-w-2xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8";
+    myDiv.className = "max-w-2xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8";
     myDiv.style.border = 'none';
     myDiv.style.backgroundColor = 'white';
 
@@ -163,7 +165,7 @@
     const data = ['Hello', 'world', 'toto', 'tata'];
 
     function createCards(assets) {
-    
+
         assets.forEach(el => {
             if (el) {
                 // Total de ventes
@@ -176,32 +178,32 @@
                 // date de création
 
                 createElement('div', {
-                    product_sales : el.sales,
-                    product_image : el.image_url,
-                    product_name : el.name,
-                    creator : el.creator.username,
-                    creator_picture : el.creator.profile_url,
-                    product_id : el.id,
-                    token_id : el.token_id,
-                    collection : el.collection.name,
-                    created_at : el.contract.created_at
+                    product_sales: el.sales,
+                    product_image: el.image_url,
+                    product_name: el.name,
+                    creator: el.creator.username,
+                    creator_picture: el.creator.profile_url,
+                    product_id: el.id,
+                    token_id: el.token_id,
+                    collection: el.collection.name,
+                    created_at: el.contract.created_at,
 
                 }, myDiv);
             }
         })
-        
+
 
     }
 
-     const username = window.location.search.split('=')[1];
-       
-     console.log(username);
+    const username = window.location.search.split('=')[1];
+
+    console.log(username);
 
     function getCollection() {
 
-        console.log(`https://awesome-nft-app.herokuapp.com/creators/${username}` );
+        console.log(`https://awesome-nft-app.herokuapp.com/creators/${username}`);
 
-        fetch(`https://awesome-nft-app.herokuapp.com/creators/${username}` )
+        fetch(`https://awesome-nft-app.herokuapp.com/creators/${username}`)
             .then(response => response.json())
             .then(data => {
                 const assets = data.assets;
