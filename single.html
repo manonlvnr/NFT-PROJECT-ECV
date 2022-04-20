@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/tw-elements/dist/css/index.min.css"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css" />
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ["Inter", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+  <body>
+    <nav
+    class="relative w-full flex flex-wrap items-center justify-between py-3 bg-gray-900 text-gray-200 shadow-lg navbar navbar-expand-lg navbar-light"
+>
+    <div class="container-fluid w-full flex flex-wrap items-center justify-between px-6">
+    <button
+        class="navbar-toggler text-gray-200 border-0 hover:shadow-none hover:no-underline py-2 px-2.5 bg-transparent focus:outline-none focus:ring-0 focus:shadow-none focus:no-underline"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarSupportedContent1"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+    >
+        <svg
+        aria-hidden="true"
+        focusable="false"
+        data-prefix="fas"
+        data-icon="bars"
+        class="w-6"
+        role="img"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 448 512"
+        >
+        <path
+            fill="currentColor"
+            d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z"
+        ></path>
+        </svg>
+    </button>
+    <div class="collapse navbar-collapse flex items-center" id="navbarSupportedContent1">
+        <a class="text-xl text-white pr-2 font-semibold" href="#" onclick="reload()">HOME</a>
+    </div>
+    <div id="middleContent"></div>
+    <div class="flex items-center flex-col relative">
+        <a class="text-white opacity-60 hover:opacity-80 focus:opacity-80 mr-4" onclick="displayFavs()">
+        <p>Favs</p>
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path fill="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+        </svg>
+        </a>
+    </div>
+</nav>
+<div class="relative w-full flex flex-wrap items-center justify-between py-3 bg-gray-100 text-gray-500 hover:text-gray-700 focus:text-gray-700 shadow-lg">
+    <div class="container-fluid flex justify-around w-full px-6" id="subMenu"></div>
+</div>
+<script src="./modules/scrollReveal.js"></script>
+  </body>
+  <script>
+    const root = document.querySelector("body");
+
+    function createElement(tag, config, parent = null) {
+      const {
+        nameNFT,
+        src,
+        ownerNFT,
+        creatorNFT,
+        descriptionNFT,
+        idNFT,
+        saleNFT,
+        collectionNameNFT,
+        collectionDescNFT,
+        collectionImgNFT,
+      } = config || {};
+
+      const element = document.createElement(tag);
+
+      if (config) {
+        // Créer un élément img avec l'url de l'image et le mettre dans la variable myDiv
+        let cardElement = document.createElement("div");
+
+        let imageContainer = document.createElement("div");
+        let imageElement = document.createElement("img");
+        let name = document.createElement("h1");
+
+        let infoContainer = document.createElement("div");
+        let description = document.createElement("p");
+        let creator = document.createElement("h3");
+        let owner = document.createElement("p");
+        let sale = document.createElement("p");
+
+        let collectionContainer = document.createElement("div");
+        let collectionName = document.createElement("h3");
+        let collectionDesc = document.createElement("p");
+        let collectionImg = document.createElement("img");
+
+        let buyBtn = document.createElement("button");
+        let likeBtn = document.createElement("button");
+        //let idCard = idNFT
+        //nftCard.setAttribute('id', idNFT);
+        cardElement.className = "nftImage flex flex-col items-center justify-center text-center mt-14";
+        cardElement.setAttribute("onclick", "runFavs(this)");
+
+        imageContainer.className = "singlecard flex flex-col justify-center items-center align-center w-[40vw]";
+        imageElement.className = " ";
+        name.className = "-translate-y-72 transform text-center text-white font-bold text-2xl";
+
+        infoContainer.className = "flex flex-col justify-center items-center mt-[40vh] card";
+        description.className = "my-8  mx-44 card";
+        creator.className = "text-2xl card";
+        owner.className = "text-xl card";
+        sale.className = "text-l card";
+
+        collectionContainer.className = "flex flex-col justify-center items-center card";
+        collectionName.className = "text-xl card";
+        collectionDesc.className = "my-8  mx-44 card";
+        collectionImg.className = "mb-16 card";
+
+        buyBtn.className = "h-10 px-6 font-semibold rounded-full bg-violet-600 text-white card";
+        likeBtn.className = "justify-center w-9 h-9 rounded-full text-violet-600 bg-violet-50 m-8 card";
+
+        if (src) {
+          imageElement.src = src;
+        }
+
+        if (nameNFT) {
+          name.innerText = nameNFT;
+        }
+        if (descriptionNFT) {
+          description.innerText = descriptionNFT;
+        }
+        if (creatorNFT) {
+          creator.innerText = `creator : ${creatorNFT}`;
+        }
+        if (ownerNFT) {
+          owner.innerText = `owner : ${ownerNFT}`;
+        }
+        if (saleNFT) {
+          sale.innerText = `sales : ${saleNFT}`;
+        }
+        if (collectionName) {
+          collectionName.innerText = `collection : ${collectionNameNFT}`;
+        }
+        if (collectionDesc) {
+          collectionDesc.innerText = collectionDescNFT;
+        }
+        if (collectionImg) {
+          collectionImg.src = collectionImgNFT;
+        }
+        if (idNFT) {
+          cardElement.setAttribute("id", idNFT);
+        }
+        buyBtn.innerText = "Buy now";
+        buyBtn.onclick = function () {
+          window.location.href = `single.html?id=${idNFT}`;
+        };
+
+        cardContainer.appendChild(cardElement);
+        cardElement.append(imageContainer, infoContainer, collectionContainer);
+
+        imageContainer.append(imageElement, name);
+        infoContainer.append(buyBtn, likeBtn, creator, description, owner, sale);
+        collectionContainer.append(collectionName, collectionDesc, collectionImg);
+
+        const tiltEffectSettings = {
+          max: 25, // max tilt rotation (degrees (deg))
+          perspective: 1000, // transform perspective, the lower the more extreme the tilt gets (pixels (px))
+          scale: 1.1, // transform scale - 2 = 200%, 1.5 = 150%, etc..
+          speed: 500, // speed (transition-duration) of the enter/exit transition (milliseconds (ms))
+          easing: "cubic-bezier(.03,.98,.52,.99)", // easing (transition-timing-function) of the enter/exit transition
+        };
+
+        const cards = document.querySelectorAll(".singlecard ");
+
+        cards.forEach((card) => {
+          card.addEventListener("mouseenter", cardMouseEnter);
+          card.addEventListener("mousemove", cardMouseMove);
+          card.addEventListener("mouseleave", cardMouseLeave);
+        });
+
+        function cardMouseEnter(event) {
+          setTransition(event);
+        }
+
+        function cardMouseMove(event) {
+          const card = event.currentTarget;
+          const cardWidth = card.offsetWidth;
+          const cardHeight = card.offsetHeight;
+          const centerX = card.offsetLeft + cardWidth / 2;
+          const centerY = card.offsetTop + cardHeight / 2;
+          const mouseX = event.clientX - centerX;
+          const mouseY = event.clientY - centerY;
+          const rotateXUncapped =
+            (+1 * tiltEffectSettings.max * mouseY) / (cardHeight / 2);
+          const rotateYUncapped =
+            (-1 * tiltEffectSettings.max * mouseX) / (cardWidth / 2);
+          const rotateX =
+            rotateXUncapped < -tiltEffectSettings.max
+              ? -tiltEffectSettings.max
+              : rotateXUncapped > tiltEffectSettings.max
+              ? tiltEffectSettings.max
+              : rotateXUncapped;
+          const rotateY =
+            rotateYUncapped < -tiltEffectSettings.max
+              ? -tiltEffectSettings.max
+              : rotateYUncapped > tiltEffectSettings.max
+              ? tiltEffectSettings.max
+              : rotateYUncapped;
+
+          card.style.transform = `perspective(${tiltEffectSettings.perspective}px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) 
+                              scale3d(${tiltEffectSettings.scale}, ${tiltEffectSettings.scale}, ${tiltEffectSettings.scale})`;
+        }
+
+        function cardMouseLeave(event) {
+          event.currentTarget.style.transform = `perspective(${tiltEffectSettings.perspective}px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
+          setTransition(event);
+        }
+
+        function setTransition(event) {
+          const card = event.currentTarget;
+          clearTimeout(card.transitionTimeoutId);
+          card.style.transition = `transform ${tiltEffectSettings.speed}ms ${tiltEffectSettings.easing}`;
+          card.transitionTimeoutId = setTimeout(() => {
+            card.style.transition = "";
+          }, tiltEffectSettings.speed);
+        }
+      }
+      if (!parent) {
+        root.appendChild(element);
+      } else {
+        parent.appendChild(element);
+      }
+      return element;
+    }
+
+    const nftContainer = createElement("div");
+    nftContainer.className = "nft-container flex";
+    const cardContainer = createElement("div");
+    cardContainer.className = "flex-1";
+    nftContainer.appendChild(cardContainer);
+
+    function createCard(data) {
+      createElement(
+        "div",
+        {
+          nameNFT: data.name,
+          src: data.image_url,
+          ownerNFT: data.owner.name,
+          creatorNFT: data.creator.username,
+          descriptionNFT: data.description,
+          idNFT: data.id,
+          saleNFT: data.sale,
+          collectionNameNFT: data.collection.name,
+          collectionDescNFT: data.collection.description,
+          collectionImgNFT: data.collection.image_url,
+        },
+        cardContainer
+      );
+    }
+    const id = window.location.search.split("=")[1];
+    function getCollection() {
+      console.log(`https://awesome-nft-app.herokuapp.com/nft/${id}`);
+
+      fetch(`https://awesome-nft-app.herokuapp.com/nft/${id}`)
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(data);
+          createCard(data);
+        })
+        .catch((error) => console.error(error));
+    }
+
+    getCollection();
+  </script>
+</html>
