@@ -49,7 +49,7 @@ function createElementCreator(tag, config, parent = null) {
             usernameElement.style.alignItems = 'center';
             element.className = 'mt-1 text-lg font-medium text-gray-900  card';
             usernameElement.style.marginTop = '20px';
-            usernameElement.style.color = '#5046e5';
+            usernameElement.className = 'text-blue-600';
 
             if (username !== '') {
                 element.appendChild(usernameElement);
@@ -78,7 +78,7 @@ function createElementCreator(tag, config, parent = null) {
         // Button
         if (address){
         const button = document.createElement('button');
-        button.className = ' mt-4 text-sm inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500';
+        button.className = 'mt-4 text-sm inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500';
         button.innerHTML = 'Voir la collection';
         button.style.maxWidth = '300px';
         button.style.margin = 'auto';

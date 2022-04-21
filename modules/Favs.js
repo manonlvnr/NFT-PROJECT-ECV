@@ -6,7 +6,7 @@ function runFavs(elem) {
 
     if(elem.classList.contains('favs')) {
         elem.classList.remove('favs');
-        elem.style.backgroundColor = "grey";
+        elem.style.backgroundColor = "#c0dfef";
 
         for( let i = 0; i < localStorage.length; i++){
             console.log(localStorage.key(i));

@@ -18,11 +18,11 @@ function createElement(tag, config, parent = null) {
     imageContainer.className = "flex-none w-56 relative shadow-md";
     imageElement.className = "absolute inset-0 w-full h-full object-cover rounded-lg ";
     infoContainer.className = "flex-auto p-6 shadow-md";
-    name.className = "w-full flex-none mt-2 order-1 text-3xl font-bold text-violet-600";
-    buyBtn.className = "h-10 px-6 font-semibold rounded-full bg-violet-600 text-white";
+    name.className = "w-full flex-none mt-2 order-1 text-3xl font-bold text-blue-600";
+    buyBtn.className = "h-10 px-6 font-semibold rounded-full bg-blue-600 text-white";
     likeBtn.className = "flex text-white items-center justify-center w-10 h-10 rounded-full likeBtn";
     likeBtn.setAttribute('onclick',"runFavs(this)");    
-    likeBtn.style.backgroundColor = "grey";
+    likeBtn.style.backgroundColor = "#c0dfef";
     
     if (src) {
       imageElement.src = src;
