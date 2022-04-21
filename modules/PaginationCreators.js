@@ -14,12 +14,18 @@ async function getCreatorsPagination() {
     displayItems(1, perPage);
 }
 
+// Methode pour afficher le nombre de data par page 
 const displayPageNav = (perPage) => {
     let pagination = ``;
+    // recupere la longueur du tableau
     const totalItems = assets.length;
+    // Si perpage est defini sinon 1
     perPage = perPage ? perPage : 1;
+    // Retourne le plus petit entier supérieur ou égal au nombre donné.
+    // Retourne le nbr de pages
     const pages = Math.ceil(totalItems / perPage);
 
+    // Pour chaque page tu crée un lien de pagination
     for (let i = 1; i <= pages; i++) {
         pagination += `<a href="#" onClick="displayItems(${i},${perPage})" style=" margin: 10px 5px !important; background: white !important; border: none !important; box-shadow: 0px 2px 2px rgb(0 0 0 / 10%) !important; padding: 10px;" >${i}</a>`;
     }
@@ -42,6 +48,8 @@ const displayItems = (page = 1, perPage) => {
         offSet = index + perPage
     }
 
+    // renvoie un objet tableau, contenant une copie superficielle d'une portion du tableau d'origin
+    // et qui retourne les data en fonction du nombre de page
     const slicedItems = assets.slice(index, offSet)
 
     const html = slicedItems.map(item =>
