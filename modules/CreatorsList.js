@@ -2,10 +2,10 @@
 // 2 : Envoie des données dans la fonction createCreatorCards(creators); avec en paramètre img, username, address du créateur
 // 3 : Création de la carte créateur avec les données du créateur et ajout dans la div creatorsDiv
 
-    function createElementCreator(tag, config, parent = null) {
-        const { username, img, address } = config || {};
+function createElementCreator(tag, config, parent = null) {
+    const { username, dataSrc, img, address, href } = config || {};
 
-        const element = document.createElement(tag);
+    const element = document.createElement(tag);
 
         // Style du grid
         element.className = 'flex font-sans ';
@@ -30,6 +30,7 @@
             const imgElement = document.createElement('img');
             imgElement.className= 'w-full aspect-w-1 aspect-h-1 rounded-lg overflow-hidden xl:aspect-w-7 xl:aspect-h-8';
             imgElement.src = img;
+            imgElement.dataset.src = dataSrc;
             imgElement.style.justifyContent = 'center';
 
 
@@ -86,10 +87,11 @@
         button.style.margin = 'auto';
         button.style.marginTop = '10px';
         button.style.marginBottom = '20px';
+        button.setAttribute('href', href)
 
-        button.onclick = function () {
-            window.location.href = `creator-collection.html?username=${username}`;
-        }
+        // button.onclick = function () {
+        //     window.location.href = `creator-collection.html?username=${username}`;
+        // }
 
         element.appendChild(button);
         }
@@ -126,9 +128,12 @@
         data.forEach(el => {
             if (el.username) {
                 createElementCreator('div', {
-                    img: el.profile_url,
+                    img: './load.jpg',
+                    dataSrc : el.profile_url,
                     username: el.username,
-                    address: el.address
+                    address: el.address,
+                    // A ajouter
+                    href: `/creator-collection.html?username=${el.username}`,
                 }, creatorsDiv);
             }
         })
