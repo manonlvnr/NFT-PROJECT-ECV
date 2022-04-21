@@ -1,8 +1,4 @@
-// 1 : Appel de la fonction createSearchBar() dans le load de la page : création de la barre de recherche + appel de la fonction createSearchBar("searchValue")
-// 2 : mySearchBar(searchValue) : display none les nftImages + appel de la fonction fetchSearchResults(searchValue) et appel de la fonction fetchSearchResults(searchValue)
-// 3 : fetchSearchResults(searchValue) : appel de la fonction fetchSearchResults(searchValue) avec en paramètre searchValue
-
-    SubMenuSelector = document.getElementById('subMenu');
+SubMenuSelector = document.getElementById('subMenu');
 
     function createFilterSales (){
 
@@ -26,7 +22,7 @@
     option2.value = 'plus_vendus';
     select.appendChild(option2);
 
-    }
+}
 
 
     document.body.addEventListener("change", function (event) {
@@ -37,7 +33,6 @@
     });
 
     function filterChanged(value) {
-        console.log(value);
 
         let nftImages = document.getElementsByClassName("nftImage");
         for (let i = 0; i < nftImages.length; i++) {
@@ -54,8 +49,6 @@
 
 
     function fetchResults(bool) {
-
-        console.log(bool)
 
         try {
             fetch(`https://awesome-nft-app.herokuapp.com/${bool}`)

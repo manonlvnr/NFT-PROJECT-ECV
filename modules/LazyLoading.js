@@ -1,13 +1,4 @@
-  // 1 - toutes les images sont chargées dans une variable nftImages (contient toutes les images de la page)
-  // 2 - on crée une variable scrollTop qui contient la position du scroll de la page
-  // 3 - on parcours toutes les images de la page
-  // 4 - si l'image est dans la zone visible de la page (offsetTop < window.innerHeight + scrollTop) alors on affiche l'image (src = data-src)
-  // 5 - si on a parcouru toutes les images de la page, on supprime l'eventListener scroll et on supprime l'eventListener resize
-  // 6 - on supprime l'eventListener orientationChange
-
-  
-  
-  let lazyloadThrottleTimeout;
+let lazyloadThrottleTimeout;
 
   function lazyload() {
 
@@ -19,7 +10,7 @@
 
     lazyloadThrottleTimeout = setTimeout(function () {
 
-      var scrollTop = window.pageYOffset;
+      let scrollTop = window.pageYOffset;
 
       for (let i = 0; i < nftImages.length; i++) {
 

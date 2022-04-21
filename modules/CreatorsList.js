@@ -1,6 +1,3 @@
-// 1 : Appel de la fonction getCreators depuis l'index : await fetch('https://awesome-nft-app.herokuapp.com/creators'); et passage de la réponse en json dans la fontion createCreatorCards(creators);
-// 2 : Envoie des données dans la fonction createCreatorCards(creators); avec en paramètre img, username, address du créateur
-// 3 : Création de la carte créateur avec les données du créateur et ajout dans la div creatorsDiv
 
 function createElementCreator(tag, config, parent = null) {
     const { username, dataSrc, img, address, href } = config || {};
@@ -88,10 +85,6 @@ function createElementCreator(tag, config, parent = null) {
         button.style.marginTop = '10px';
         button.style.marginBottom = '20px';
         button.setAttribute('href', href)
-
-        // button.onclick = function () {
-        //     window.location.href = `creator-collection.html?username=${username}`;
-        // }
 
         element.appendChild(button);
         }

@@ -48,7 +48,7 @@ const displayItems = (page = 1, perPage) => {
         `<!-- card -->
         <div class="mx-auto flex w-96 flex-col justify-center bg-white rounded-2xl shadow-xl shadow-slate-300/60">
             <!-- img -->
-            <img class="aspect-video w-96 rounded-t-2xl object-cover object-center" src="${item.profile_url}" />
+            <img class="aspect-video w-96 rounded-t-2xl object-cover object-center" data-src="${item.profile_url}" src="./load.jpg" />
             <!-- text information -->
             <div class="p-4">
             <h1 class="text-2xl font-medium text-slate-600 pb-2">${item.username}</h1>

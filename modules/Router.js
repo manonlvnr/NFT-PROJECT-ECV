@@ -1,11 +1,3 @@
-// 1- on sélectionne toutes les attributs href de tous les bouttons dans une variable activeRoutes 
-// 2- au click sur un boutton, on récupère l'attribut href de ce boutton
-// 3- si la route n'est pas dans myRoutes alors on affiche une erreur 404
-// 4- si la route est dans myRoutes alors on redirige vers la route
-
-// PS : la variable url est à modifier selon l'adresse de l'environnement
-// Fichiers concernées : modules/Router.js -- modules/CreatorsList.js -- NftBoard.js
-
 
 const url = 'http://127.0.0.1:5500/'
 
@@ -41,24 +33,12 @@ document.addEventListener('DOMContentLoaded', function () {
         if (!routeInfo) {
             console.log('Cette route n\'existe pas');
             return;
-
-
+            
         } else {
-
-            // Gérer les paramètres de la route
-
-            // S'il y a des paramètres dans la route
             if (query !== '') {
-
-
                 window.location.href = url + routeInfo.path + '?' + query;
-
-
-            // S'il n'y a pas de paramètres dans la route
             } else {
-
                 window.location.pathname = url + routeInfo.path
-       
             }
         }
     };

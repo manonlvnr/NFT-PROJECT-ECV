@@ -1,8 +1,4 @@
-// 1 : Appel de la fonction createSearchBar() dans le load de la page : création de la barre de recherche + appel de la fonction createSearchBar("searchValue")  
-// 2 : mySearchBar(searchValue) : display none les nftImages + appel de la fonction fetchSearchResults(searchValue) et appel de la fonction fetchSearchResults(searchValue)
-// 3 : fetchSearchResults(searchValue) : appel de l'api en passant le param à l'url d'appel : on renvoie le resultats à la fonction createCards
-// 4 : createCards(assets) : création des cards avec les données de l'api
-// 5 : 3 addEventListener() pour la barre de recherche : keyup, enter et click sur le bouton de recherche
+
 navbarContent = document.getElementById('middleContent');
 
 function createSearchBar() {

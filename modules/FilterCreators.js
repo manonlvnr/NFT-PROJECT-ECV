@@ -1,7 +1,3 @@
-// Etape 1 : Fetch tous les creators ('https://awesome-nft-app.herokuapp.com/creators') et les renvoyer a la fonction createFilterAuthors(creators)
-// Etape 2 : Créer une div qui comprend un select // une option tous les créateurs // et les creators (foreach)
-// Etape 3 : Créer un event listener onchange : si le change est sur id === "filter_creators", on display none les images : si value !== '' alors renvoyer la fonction filterResults(value); sinon createIndex();
-// Etape 4 : Dans filterResults(value) on fait un call à l'api en passant le param à l'url d'appel : on renvoie le resultats à la fonction createCards
 SubMenuSelector = document.getElementById('subMenu');
 
 function createFilterAuthors(creators) {
