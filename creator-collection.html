@@ -109,16 +109,6 @@
             createLineLabelData("Product name : ", product_name, element)
         }
 
-
-        // Photo de profil
-        // if (creator_picture) {
-        //     const creatorPictureElement = document.createElement('img');
-        //     creatorPictureElement.className = 'w-10 aspect-w-1 aspect-h-1  rounded-lg overflow-hidden xl:aspect-w-7 xl:aspect-h-8';
-        //     creatorPictureElement.src = creator_picture;
-        //     creatorPictureElement.style.justifyContent = 'center';
-        //     element.appendChild(creatorPictureElement);
-        // }
-
         // Créateur
         if (creator) {
             createLineLabelData("Creator : ", creator, element)
@@ -233,9 +223,6 @@
     }
 
     function getCollection() {
-
-        console.log(`https://awesome-nft-app.herokuapp.com/creators/${username}`);
-
         fetch(`https://awesome-nft-app.herokuapp.com/creators/${username}`)
             .then(response => response.json())
             .then(data => {
@@ -244,10 +231,7 @@
             })
             .catch(error => console.error(error))
     }
-
     getCollection();
-
-
 </script>
 
 </html>
