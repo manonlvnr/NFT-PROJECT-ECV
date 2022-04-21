@@ -7,7 +7,7 @@
 
   
   
-  var lazyloadThrottleTimeout;
+  let lazyloadThrottleTimeout;
 
   function lazyload() {
 

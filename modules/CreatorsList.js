@@ -111,19 +111,6 @@ function createElementCreator(tag, config, parent = null) {
     creatorsDiv.style.border = 'none';
     creatorsDiv.style.backgroundColor = 'white';
 
-    // const data = ['Hello', 'world', 'toto', 'tata'];
-    // const dataCreators = new Promise((resolve, reject) => {
-    //     // ...
-    //     const isRunning = true;
-
-    //     if(isRunning){
-    //         resolve()
-    //     }else{
-    //         reject()
-    //     }
-    // })
-
-
     function createCreatorCards(data) {
         data.forEach(el => {
             if (el.username) {

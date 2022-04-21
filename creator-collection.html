@@ -6,60 +6,86 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title></title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
 </head>
 
 <body>
-
+    <nav
+        class="relative w-full flex flex-wrap items-center justify-between py-3 bg-gray-900 text-gray-200 shadow-lg navbar navbar-expand-lg navbar-light">
+        <div class="container-fluid w-full flex flex-wrap items-center justify-between px-6">
+            <div class="collapse navbar-collapse flex items-center" id="navbarSupportedContent1">
+                <a class="text-xl text-white pr-2 font-semibold" href="index.html">HOME</a>
+            </div>
+            <div id="middleContent"></div>
+            <div class="flex items-center flex-col relative">
+                <a class="text-white opacity-60 hover:opacity-80 focus:opacity-80 mr-4">
+                    <p>Favs</p>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor" stroke-width="2">
+                        <path fill="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                            d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                    </svg>
+                </a>
+            </div>
+    </nav>
+    <div
+        class="relative w-full flex flex-wrap items-center justify-between py-3 bg-gray-100 text-gray-500 hover:text-gray-700 focus:text-gray-700 shadow-lg">
+        <div class="container-fluid flex justify-around w-full px-6" id="subMenu"></div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/tw-elements/dist/js/index.min.js"></script>
 </body>
 <script type="text/javascript">
 
     const root = document.querySelector('body');
 
-
     function createElement(tag, config, parent = null) {
-        const { 
-            product_sales, 
-            product_image, 
+        const {
+            product_sales,
+            product_image,
             product_name,
             creator,
             creator_picture,
             product_id,
             token_id,
             collection,
-            created_at        
+            created_at
         } = config || {};
 
         const element = document.createElement(tag);
         // Style du grid
         element.className = 'flex font-sans';
         element.href = "https://www.ethereum.org/";
-        
-
 
         element.classList.add("grid", "grid-cols-1");
         element.style.display = 'grid';
         element.style.border = '2px solid #eaeaea';
         element.style.borderRadius = '10px';
         element.style.backgroundColor = ' #f9fafc';
-
+        element.style.padding = ' 10px';
 
         // Image du produit
         if (product_image) {
             const imgDiv = document.createElement('div');
-            
+
             imgDiv.style.display = 'flex';
             imgDiv.style.justifyContent = 'center';
             imgDiv.style.alignItems = 'center';
 
-        //    ajout bordure noire
-                imgDiv.style.border = '2px solid #000';
-
             const imgElement = document.createElement('img');
 
-            imgElement.className= 'w-full aspect-w-1 aspect-h-1  rounded-lg overflow-hidden xl:aspect-w-7 xl:aspect-h-8';
+            imgElement.className = 'w-full aspect-w-1 aspect-h-1  rounded-lg overflow-hidden xl:aspect-w-7 xl:aspect-h-8';
             imgElement.src = product_image;
             imgElement.style.justifyContent = 'center';
-
 
             imgDiv.appendChild(imgElement);
 
@@ -68,77 +94,47 @@
 
             }
         }
-        
+
         // Nombre de ventes
         if (product_sales) {
-            const sales = document.createElement('p');
-            sales.innerHTML = "Sales : " + product_sales;
-               //    ajout bordure noire
-                sales.style.border = '2px solid #000';
-            element.appendChild(sales);
+            createLineLabelData("Sales : ", product_sales, element)
         }
 
         // Nom du produit
-        if(product_name) {
-            const name = document.createElement('p');
-            name.innerHTML = "Product name : " + product_name;
-            //    ajout bordure noire
-            name.style.border = '2px solid #000';
-            element.appendChild(name);
-        }
-
-        // Photo de profil
-        if(creator_picture) {
-            const creatorPictureElement = document.createElement('img');
-            creatorPictureElement.className= 'w-10 aspect-w-1 aspect-h-1  rounded-lg overflow-hidden xl:aspect-w-7 xl:aspect-h-8';
-            creatorPictureElement.src = creator_picture;
-            creatorPictureElement.style.justifyContent = 'center';
-            element.appendChild(creatorPictureElement);
+        if (product_name) {
+            createLineLabelData("Product name : ", product_name, element)
         }
 
         // Créateur
-        if(creator) {
-            const creatorElement = document.createElement('p');
-            creatorElement.innerHTML = "Creator : " + creator;
-            //    ajout bordure noire
-            creatorElement.style.border = '2px solid #000';
-            element.appendChild(creatorElement);
+        if (creator) {
+            createLineLabelData("Creator : ", creator, element)
         }
 
         // Collection
-        if(collection) {
-            const collectionElement = document.createElement('p');
-            collectionElement.innerHTML = "Collection : " + collection;
-            //    ajout bordure noire
-            collectionElement.style.border = '2px solid #000';
-
-            element.appendChild(collectionElement);
+        if (collection) {
+            createLineLabelData("Collection : ", collection, element)
         }
 
         // Creation 
-        if(created_at) {
-            const createdAtElement = document.createElement('p');
-            createdAtElement.innerHTML = 'Created at : '+ created_at;
-            //    ajout bordure noire
-            createdAtElement.style.border = '2px solid #000';
-            element.appendChild(createdAtElement);
+        if (created_at) {
+            let newCreated = created_at.substr(0, 10);
+            newCreated = newCreated.replaceAll('-', '/')
+            createLineLabelData("Created at : ", newCreated, element)
         }
 
-         // Button
-        if (product_image){
-        const button = document.createElement('button');
-        button.className = ' mt-4 text-sm inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500';
-        button.innerHTML = 'Voir le NFT';
-        button.style.maxWidth = '300px';
-        button.style.margin = 'auto';
-        button.style.marginTop = '10px';
-        button.style.marginBottom = '20px';
+        // Button
+        if (product_image) {
+            const button = document.createElement('button');
+            button.className = ' mt-4 text-sm inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500';
+            button.innerHTML = 'Voir le NFT';
+            button.style.maxWidth = '300px';
+            button.style.margin = 'auto';
+            button.style.marginTop = '20px';
+            button.style.marginBottom = '10px';
 
-        button.onclick = function () {
-            
+            button.onclick = function () {
         }
-
-        element.appendChild(button);
+            element.appendChild(button);
         }
 
         if (!parent) {
@@ -154,66 +150,67 @@
 
     myDiv.style.gridTemplateColumns = '1fr 1fr 1fr';
     myDiv.style.gridGap = '50px';
-    myDiv.className ="max-w-2xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8";
+    myDiv.className = "max-w-2xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8";
     myDiv.style.border = 'none';
     myDiv.style.backgroundColor = 'white';
-
-
 
     const data = ['Hello', 'world', 'toto', 'tata'];
 
     function createCards(assets) {
-    
+        const div = document.createElement('div');
+        div.innerHTML = assets.length + ' résultat(s)';
+        div.classList.add('text-xl', 'p-2.5');
+        var bodyChildren = document.querySelector('body').children;
+        document.body.insertBefore(div, bodyChildren.item(4));
+
         assets.forEach(el => {
             if (el) {
-                // Total de ventes
-                // Image
-                // Nom du produit            
-                // Créateur
-                // id
-                // token_id
-                // Nom de la collection
-                // date de création
-
                 createElement('div', {
-                    product_sales : el.sales,
-                    product_image : el.image_url,
-                    product_name : el.name,
-                    creator : el.creator.username,
-                    creator_picture : el.creator.profile_url,
-                    product_id : el.id,
-                    token_id : el.token_id,
-                    collection : el.collection.name,
-                    created_at : el.contract.created_at
-
+                    product_sales: el.sales,
+                    product_image: el.image_url,
+                    product_name: el.name,
+                    creator: el.creator.username,
+                    creator_picture: el.creator.profile_url,
+                    product_id: el.id,
+                    token_id: el.token_id,
+                    collection: el.collection.name,
+                    created_at: el.contract.created_at
                 }, myDiv);
             }
         })
-        
-
     }
 
-     const username = window.location.search.split('=')[1];
-       
-     console.log(username);
+    const username = window.location.search.split('=')[1];
+
+    console.log(username);
+
+    function createLineLabelData(labelString, data, element) {
+        const name = document.createElement('p');
+        const label = document.createElement('p');
+        const div = document.createElement('div');
+        div.appendChild(label);
+        div.appendChild(name);
+
+        label.innerHTML = labelString;
+        name.innerHTML = data;
+
+        div.style.display = 'flex';
+        name.style.padding = '5px 0px 5px 4px';
+        label.style.padding = '5px 0px';
+        label.style.color = '#4338CA';
+        element.appendChild(div);
+    }
 
     function getCollection() {
-
-        console.log(`https://awesome-nft-app.herokuapp.com/creators/${username}` );
-
-        fetch(`https://awesome-nft-app.herokuapp.com/creators/${username}` )
+        fetch(`https://awesome-nft-app.herokuapp.com/creators/${username}`)
             .then(response => response.json())
             .then(data => {
                 const assets = data.assets;
-                console.log(assets)
                 createCards(assets);
             })
             .catch(error => console.error(error))
     }
-
     getCollection();
-
-
 </script>
 
 </html>
