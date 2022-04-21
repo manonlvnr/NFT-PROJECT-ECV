@@ -5,7 +5,6 @@ function runFavs(elem) {
     const img = imgContainer.firstChild;
 
     if(elem.classList.contains('favs')) {
-        // console.log('Class present');
         elem.classList.remove('favs');
         elem.style.backgroundColor = "grey";
 
@@ -16,7 +15,6 @@ function runFavs(elem) {
             }
         }
     } else {
-        // console.log('Class not present');
         elem.classList.add('favs');
         elem.style.backgroundColor = "pink";
         localStorage.setItem(grandParent.id, img.src);

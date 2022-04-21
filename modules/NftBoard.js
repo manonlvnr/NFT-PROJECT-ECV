@@ -25,9 +25,6 @@ function createElement(tag, config, parent = null) {
     let heartBtn = document.createElement("img");
     likeBtn.appendChild(heartBtn);
 
-
-    //let idCard = idNFT
-    //nftCard.setAttribute('id', idNFT);
     cardElement.className = "flex font-sans p-8 m-8 card nftImage";
     // cardElement.setAttribute('onclick',"runFavs(this)");
     imageContainer.className = "flex-none w-56 relative shadow-md";
