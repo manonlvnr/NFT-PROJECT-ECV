@@ -1,68 +1,74 @@
-// let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
-// console.log(nftTabs);
-// console.log(localStorage);
-
 function runFavs(elem) {
-        if(elem.classList.contains('favs')) {
-            console.log('Class present');
-            elem.classList.remove('favs');
-            // localStorage.removeItem('nftId', nftId);
-        } else {
-            console.log('Class not present');
-            elem.classList.add('favs');
-            localStorage.setItem(elem.id, elem.src);
+    const daddy = elem.parentNode;
+    const grandParent = daddy.parentNode;
+    const imgContainer = grandParent.firstChild;
+    const img = imgContainer.firstChild;
+
+    if(elem.classList.contains('favs')) {
+        elem.classList.remove('favs');
+        elem.style.backgroundColor = "grey";
+
+        for( let i = 0; i < localStorage.length; i++){
+            console.log(localStorage.key(i));
+            if (localStorage.key(i) === grandParent.id){
+                localStorage.removeItem(localStorage.key(i));
+            }
         }
-        console.log(localStorage);
+    } else {
+        elem.classList.add('favs');
+        elem.style.backgroundColor = "pink";
+        localStorage.setItem(grandParent.id, img.src);
     }
+    console.log(localStorage);
+}
+
+const wrapper = document.createElement('div');
+wrapper.className = "flex flex-col-reverse justify-center items-center py-6";
+const divContainer = document.createElement('h1');
+const favWrapper = document.createElement('div');
+document.querySelector('body').appendChild(favWrapper);
+favWrapper.className = "flex flex-col justify-center items-center py-6";
+const favContainer = document.createElement('div');
+favContainer.className = "max-w-2xl mx-auto py-6 px-4 sm:py-14 sm:px-6 lg:max-w-7xl lg:px-8";
+favContainer.setAttribute('style', 'display: grid; border: none; border-radius: 10px; background-color: white; grid-template-columns: 1fr 1fr 1fr; gap: 20px;');
 
 function displayFavs() {
     nftContainer.style.display = "none";
     creatorsDiv.style.display = "none";
+
+    const resetBtn = document.createElement('button');
+    resetBtn.className = "bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded";
+    resetBtn.innerText = "Clean favorites";
+    favWrapper.appendChild(resetBtn);
+    
+    resetBtn.addEventListener('click', function() {
+        favContainer.style.display = "none";
+        localStorage.clear();
+    })
     
     if (localStorage.length === 0) {
-        // const divContainer = document.createElement('h1');
-        // divContainer.innerHTML = "Oh no... you don't have any favorites"
+        const noFavs1 = document.createElement('p'); 
+        noFavs1.innerHTML = "Oh no... you don't have any favorites";
+        noFavs1.className = "font-medium leading-tight text-3xl";
+        const noFavs2 = document.createElement('p'); 
+        noFavs2.innerHTML = "Quick add Some !";
+        noFavs2.className = "font-medium leading-tight text-2xl text-gray-500";
+        document.querySelector('body').appendChild(wrapper);
+        wrapper.appendChild(divContainer);
+
+        divContainer.append(noFavs1, noFavs2);
         console.log('localStorage is empty');
     } else {
-        const favContainer = document.createElement('div');
-        document.querySelector('body').appendChild(favContainer);
-        for (i = 0; i < localStorage.length; i++) {
+        favWrapper.appendChild(favContainer);
+        for(let key in localStorage) {
             let fav = document.createElement('img');
-            fav.style.width = '350px';
-            fav.style.height = '350px';
+            fav.className = "basis-1/4"
+            fav.src = localStorage.getItem(key);
             favContainer.appendChild(fav);
-            fav.src = localStorage.getItem();
         }
-        console.log(localStorage);
+        if ( document.querySelector('img').src === 404 ) {
+            console.log('shit');
+        }
     }
 
 }
-
-//     // get favorites from local storage or empty array
-//     let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
-//     // add class 'fav' to each favorite
-//     favorites.forEach(function(favorite) {
-//         document.getElementById(favorite).className = 'fav';
-//     });
-//     // register click event listener
-//     document.querySelector('.nftcontainer').addEventListener('click', function(e) {
-//         let id = e.target.id,
-//             item = e.target,
-//             index = favorites.indexOf(id);
-//         // return if target doesn't have an id (shouldn't happen)
-//         if (!id) return;
-//         // item is not favorite
-//         if (index == -1) {
-//             favorites.push(id);
-//             item.className = 'fav';
-//         // item is already favorite
-//         } else {
-//             favorites.splice(index, 1);
-//             item.className = '';
-//         }
-//         // store array in local storage
-//         localStorage.setItem('favorites', JSON.stringify(favorites));
-//     });
-    
-//     console.log(localStorage);
-// local storage stores strings so we use JSON to stringify for storage and parse to get out of storage.
