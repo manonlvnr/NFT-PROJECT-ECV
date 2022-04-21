@@ -85,11 +85,11 @@
             </svg>
         </button>
         <div class="collapse navbar-collapse flex items-center" id="navbarSupportedContent1">
-            <a class="text-xl text-white pr-2 font-semibold" href="#" onclick="reload()">HOME</a>
+            <a class="text-xl text-white pr-2 font-semibold hover:text-blue-600 focus:text-blue-600" href="#" onclick="reload()">HOME</a>
         </div>
         <div id="middleContent"></div>
         <div class="flex items-center flex-col relative">
-            <a class="text-white opacity-60 hover:opacity-80 focus:opacity-80 mr-4" onclick="displayFavs()">
+            <a class="flex text-white hover:text-blue-600 focus:text-blue-600" onclick="displayFavs()">
             <p>Favs</p>
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                 <path fill="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
@@ -116,6 +116,7 @@
     function reload() {
         location.reload();
     }
+    
     window.addEventListener('load', () => {
         createFilterCreators();
         createFilterSales();
