@@ -1,15 +1,18 @@
 let assets;
-async function getCreators() {
+async function getCreatorsPagination() {
     const response = await fetch('https://awesome-nft-app.herokuapp.com/creators');
     const data = await response.json();
     assets = data.creators;
+
+    nftContainer.style.display = "none";
+    creatorsDiv.style.display = "none";
+    subMenu.style.display = 'none';
+    middleContent.style.display = 'none';
 
     let perPage = 10;
     displayPageNav(perPage);
     displayItems(1, perPage);
 }
-
-getCreators();
 
 const displayPageNav = (perPage) => {
     let pagination = ``;
@@ -18,7 +21,7 @@ const displayPageNav = (perPage) => {
     const pages = Math.ceil(totalItems / perPage);
 
     for (let i = 1; i <= pages; i++) {
-        pagination += `<a href="#" onClick="displayItems(${i},${perPage})" class="pagination-link" >${i}</a>`;
+        pagination += `<a href="#" onClick="displayItems(${i},${perPage})" style=" margin: 10px 5px !important; background: white !important; border: none !important; box-shadow: 0px 2px 2px rgb(0 0 0 / 10%) !important; padding: 10px;" >${i}</a>`;
     }
 
     document.getElementById('pagination').innerHTML = pagination;
@@ -54,5 +57,5 @@ const displayItems = (page = 1, perPage) => {
         </div>
         </div>`)
 
-    document.querySelector('#container .contents').innerHTML = html.join('')
+    document.querySelector('#container .contents').innerHTML = html.join('');
 }
